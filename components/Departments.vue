@@ -82,14 +82,6 @@
       <div class="modal-wrapper">
         <div class="modal-container">
 
-          <div class="modal-header">
-            <slot name="header">
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Add a payment
-              </p>
-            </slot>
-          </div>
-
           <div class="modal-body">
             <slot name="body">
                 <div class="container flex justify-center">
@@ -98,26 +90,14 @@
                 >
                   
                   <div class="relative mb-4">
-                    <label for="username" class="leading-7 text-sm text-gray-600"
-                      >Username</label
+                    <label for="departmentName" class="leading-7 text-sm text-gray-600"
+                      >Department Name</label
                     >
                     <input
-                      v-model="username"
+                      v-model="departmentName"
                       type="text"
-                      id="username"
-                      name="username"
-                      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    />
-                  </div>
-                  <div class="relative mb-4">
-                    <label for="amount" class="leading-7 text-sm text-gray-600"
-                      >Amount</label
-                    >
-                    <input
-                      v-model="amount"
-                      type="number"
-                      id="amount"
-                      name="amount"
+                      id="departmentName"
+                      name="departmentName"
                       class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
@@ -127,9 +107,6 @@
                   >
                     Save
                   </button>
-                  <p class="text-xs text-gray-500 mt-3">
-                    Currency conversions will be handles automatically.
-                  </p>
                 </div>
               </div>
             </slot>
@@ -156,6 +133,7 @@ export default {
   name: 'Departments',
   data() {
     return {
+      departmentName: "",
       departments: [],
       showModal: false,
     }
@@ -176,9 +154,7 @@ export default {
       };
 
       const payload = {
-        user_id: localStorage.getItem('user_id'),
-        entry: this.type,
-        amount: this.amount,
+        departmentName: this.departmentName,
       }
 
       const BASE_URL = 'http://localhost:8000';
@@ -190,6 +166,7 @@ export default {
           console.log(response)
           if (response.data.success) {
             this.$toast.show('successfully created.');
+            this.showModal = false;
           }
         })
         .catch((error) => {
