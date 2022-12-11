@@ -1,4 +1,4 @@
-# nuxt-fe-service
+# hospital management system nuxtjs app
 
 ## Build Setup
 
