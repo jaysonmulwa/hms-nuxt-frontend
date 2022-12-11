@@ -34,7 +34,7 @@
         <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 tracking"
         >
-          Transfer.
+          Payments.
         </h1>
       </div>
       <div class="container px-5 py-24 mx-auto flex justify-center">

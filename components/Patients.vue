@@ -35,7 +35,7 @@
         <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 tracking"
         >
-          Profile
+          Patients
         </h1>
       </div>
       <!--<div class="flex flex-wrap justify-center -m-4">
@@ -135,10 +135,10 @@
                 >
               </div>
 
-              <span v-if="transactions.length">
+              <span v-if="patients.length">
                 <div
                   class="flex border-t border-gray-200 py-2"
-                  v-for="item in transactions"
+                  v-for="item in patients"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
@@ -200,6 +200,7 @@ export default {
       selected_currency: '',
       profile: {},
       transactions: {},
+      patients: {},
     }
   },
   methods: {
@@ -214,12 +215,6 @@ export default {
         })
     },
     save() {
-
-      if (this.default_currency == '') {
-        this.$toast.show("Please select a currency")
-        return
-      }
-
       const params = {
         headers: {
           Accept: 'application/json',
@@ -278,10 +273,12 @@ export default {
 
       const BASE_URL = 'http://localhost:8000'
 
-      const [transactions] = await Promise.all([
+      const [patients, transactions] = await Promise.all([
+        axios.create(params).get(`${BASE_URL}/patients`),
         axios.create(params).get(`${BASE_URL}/history`),
       ])
       this.transactions = transactions?.data;
+      this.patients = patients?.data;
       
     } catch (error) {
       console.log(error)

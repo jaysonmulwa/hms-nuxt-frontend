@@ -35,7 +35,7 @@
         <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 tracking"
         >
-          Profile
+          Doctors
         </h1>
       </div>
       <!--<div class="flex flex-wrap justify-center -m-4">
@@ -131,14 +131,14 @@
               <div class="flex mb-4">
                 <a
                   class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
-                  >Patients</a
+                  >Doctors</a
                 >
               </div>
 
-              <span v-if="transactions.length">
+              <span v-if="doctors.length">
                 <div
                   class="flex border-t border-gray-200 py-2"
-                  v-for="item in transactions"
+                  v-for="item in doctors"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
@@ -199,7 +199,7 @@ export default {
       editable: false,
       selected_currency: '',
       profile: {},
-      transactions: {},
+      doctors: {},
     }
   },
   methods: {
@@ -278,10 +278,10 @@ export default {
 
       const BASE_URL = 'http://localhost:8000'
 
-      const [transactions] = await Promise.all([
-        axios.create(params).get(`${BASE_URL}/history`),
+      const [doctors] = await Promise.all([
+        axios.create(params).get(`${BASE_URL}/doctors`),
       ])
-      this.transactions = transactions?.data;
+      this.doctors = doctors?.data;
       
     } catch (error) {
       console.log(error)

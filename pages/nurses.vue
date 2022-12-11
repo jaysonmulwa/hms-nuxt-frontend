@@ -1,9 +1,9 @@
 <template>
-  <Transfer />
+  <Nurses />
 </template>
 
 <script>
 export default {
-  name: 'TransferPage',
+  name: 'NursesPage',
 }
 </script>

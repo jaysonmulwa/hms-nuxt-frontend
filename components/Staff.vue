@@ -35,7 +35,7 @@
         <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 tracking"
         >
-          Profile
+          Staff
         </h1>
       </div>
       <!--<div class="flex flex-wrap justify-center -m-4">
@@ -131,44 +131,14 @@
               <div class="flex mb-4">
                 <a
                   class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
-                  >Patients</a
+                  >Staff</a
                 >
               </div>
 
-              <span v-if="transactions.length">
+              <span v-if="staff.length">
                 <div
                   class="flex border-t border-gray-200 py-2"
-                  v-for="item in transactions"
-                  :key="item.id"
-                >
-                  <span class="text-gray-500"
-                    >{{ item.narrative }}
-                  </span>
-                  <span class="ml-auto text-gray-900">{{ item.date }}</span>
-                </div>
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-wrap justify-center">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="lg:w-4/5 mx-auto flex flex-wrap">
-            <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-              <div class="flex mb-4">
-                <a
-                  class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
-                  >Recent Patient History</a
-                >
-              </div>
-              <p class="leading-relaxed mb-4">
-                This is the most recent patient history.
-              </p>
-
-              <span v-if="transactions.length">
-                <div
-                  class="flex border-t border-gray-200 py-2"
-                  v-for="item in transactions"
+                  v-for="item in staff"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
@@ -199,7 +169,7 @@ export default {
       editable: false,
       selected_currency: '',
       profile: {},
-      transactions: {},
+      staff: {},
     }
   },
   methods: {
@@ -278,10 +248,10 @@ export default {
 
       const BASE_URL = 'http://localhost:8000'
 
-      const [transactions] = await Promise.all([
-        axios.create(params).get(`${BASE_URL}/history`),
+      const [staff] = await Promise.all([
+        axios.create(params).get(`${BASE_URL}/staff`),
       ])
-      this.transactions = transactions?.data;
+      this.staff = staff?.data;
       
     } catch (error) {
       console.log(error)
