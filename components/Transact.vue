@@ -114,7 +114,7 @@ export default {
         amount: this.amount,
       }
 
-      const BASE_URL = 'http://localhost:3001'
+      const BASE_URL = 'http://localhost:8000'
 
       axios
         .create(params)

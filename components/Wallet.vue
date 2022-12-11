@@ -113,7 +113,7 @@ export default {
         },
       }
 
-      const BASE_URL = 'http://localhost:3001'
+      const BASE_URL = 'http://localhost:8000'
       const userId = localStorage.getItem('user_id')
       const [balance, transactions] = await Promise.all([
         axios.create(params).get(`${BASE_URL}/api/v1/balance/${userId}`),

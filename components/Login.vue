@@ -109,7 +109,7 @@ export default {
         password: this.password,
       }
 
-      const BASE_URL = 'http://localhost:3001'
+      const BASE_URL = 'http://localhost:8000'
 
       axios
         .create(params)
