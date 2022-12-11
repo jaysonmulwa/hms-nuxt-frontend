@@ -55,9 +55,6 @@
                   >Recent Appointments</a
                 >
               </div>
-              <p class="leading-relaxed mb-4">
-                These are the most recent appointments.
-              </p>
 
               <span v-if="appointments.length">
                 <div
@@ -83,15 +80,6 @@
     <div class="modal-mask" v-show="showModal">
       <div class="modal-wrapper">
         <div class="modal-container">
-
-          <div class="modal-header">
-            <slot name="header">
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Add a payment
-              </p>
-            </slot>
-          </div>
-
           <div class="modal-body">
             <slot name="body">
                 <div class="container flex justify-center">
@@ -100,29 +88,43 @@
                 >
                   
                   <div class="relative mb-4">
-                    <label for="username" class="leading-7 text-sm text-gray-600"
-                      >Username</label
+                    <label for="appointmentDate" class="leading-7 text-sm text-gray-600"
+                      >Appointment Date</label
                     >
                     <input
-                      v-model="username"
+                      v-model="appointmentDate"
                       type="text"
-                      id="username"
-                      name="username"
+                      id="appointmentDate"
+                      name="appointmentDate"
                       class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                   <div class="relative mb-4">
-                    <label for="amount" class="leading-7 text-sm text-gray-600"
-                      >Amount</label
+                    <label for="appointmentDescription" class="leading-7 text-sm text-gray-600"
+                      >Appointment Description</label
                     >
                     <input
-                      v-model="amount"
-                      type="number"
-                      id="amount"
-                      name="amount"
+                      v-model="appointmentDescription"
+                      type="text"
+                      id="appointmentDescription"
+                      name="appointmentDescription"
                       class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
+
+                  <div class="relative mb-4">
+                    <label for="staffId" class="leading-7 text-sm text-gray-600"
+                      >Staff</label
+                    >
+                    <input
+                      v-model="staffId"
+                      type="text"
+                      id="staffId"
+                      name="staffId"
+                      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div>
+
                   <button
                     class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                     @click="create"
@@ -158,6 +160,9 @@ export default {
   name: 'Appointments',
   data() {
     return {
+      appointmentDate: "",
+      appointmentDescription: "",
+      staffId: 1,
       appointments: [],
       showModal: false,
     }
@@ -178,9 +183,9 @@ export default {
       };
 
       const payload = {
-        user_id: localStorage.getItem('user_id'),
-        entry: this.type,
-        amount: this.amount,
+        appointmentDate: this.appointmentDate,
+        appointmentDescription: this.appointmentDescription,
+        staffId: this.staffId
       }
 
       const BASE_URL = 'http://localhost:8000';
@@ -192,6 +197,7 @@ export default {
           console.log(response)
           if (response.data.success) {
             this.$toast.show('successfully created.');
+            tHIS.showModal = false;
           }
         })
         .catch((error) => {
