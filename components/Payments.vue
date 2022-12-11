@@ -157,9 +157,6 @@
                   >
                     Save
                   </button>
-                  <p class="text-xs text-gray-500 mt-3">
-                    Currency conversions will be handles automatically.
-                  </p>
                 </div>
               </div>
             </slot>

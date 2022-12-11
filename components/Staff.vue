@@ -81,14 +81,6 @@
         <div class="modal-wrapper">
           <div class="modal-container">
 
-            <div class="modal-header">
-              <slot name="header">
-                <p class="leading-relaxed mb-5 text-gray-600">
-                  Add a payment
-                </p>
-              </slot>
-            </div>
-
             <div class="modal-body">
               <slot name="body">
                   <div class="container flex justify-center">
@@ -126,9 +118,6 @@
                     >
                       Save
                     </button>
-                    <p class="text-xs text-gray-500 mt-3">
-                      Currency conversions will be handles automatically.
-                    </p>
                   </div>
                 </div>
               </slot>
