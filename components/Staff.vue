@@ -137,15 +137,18 @@
 
               <span v-if="staff.length">
                 <div
-                  class="flex border-t border-gray-200 py-2"
+                  class="flex border-b border-gray-200 py-2"
                   v-for="item in staff"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
-                    >{{ item.narrative }}
+                    >{{ item.staffCategory}}
                   </span>
-                  <span class="ml-auto text-gray-900">{{ item.date }}</span>
+                  <span class="ml-auto text-gray-900">{{ item.employmentStatus }}</span>
                 </div>
+              </span>
+              <span v-else>
+                No data at the moment.
               </span>
             </div>
           </div>
@@ -169,7 +172,7 @@ export default {
       editable: false,
       selected_currency: '',
       profile: {},
-      staff: {},
+      staff: [],
     }
   },
   methods: {

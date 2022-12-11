@@ -38,19 +38,6 @@
           Appointments.
         </h1>
       </div>
-      <div class="flex flex-wrap justify-center -m-4">
-        <div class="xl:w-1/2 md:w-1/2 w-full p-4">
-          <div class="border border-gray-200 p-6 rounded-lg">
-            <p class="text-lg w-full mt-2">BALANCE</p>
-            <p class="text-5xl text-gray-900 font-bold title-font mt-6">
-              {{ this.balance.amount }} {{ this.balance.currency }}
-            </p>
-            <p class="leading-relaxed text-base w-full mt-2">
-              Currency: United States dollar
-            </p>
-          </div>
-        </div>
-      </div>
       <div class="flex flex-wrap justify-center">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -67,15 +54,18 @@
 
               <span v-if="appointments.length">
                 <div
-                  class="flex border-t border-gray-200 py-2"
+                  class="flex border-b border-gray-200 py-2"
                   v-for="item in appointments"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
-                    >{{ item.transaction_type }}
+                    >{{ item.appointmentDate }}
                   </span>
-                  <span class="ml-auto text-gray-900">{{ item.amount }}</span>
+                  <span class="ml-auto text-gray-900">{{ item.appointmentDescription }}</span>
                 </div>
+              </span>
+              <span v-else>
+                No data at the moment.
               </span>
             </div>
           </div>
@@ -95,7 +85,7 @@ export default {
         amount: 0,
         currency: 'USD',
       },
-      appointments: {},
+      appointments: [],
       //
     }
   },

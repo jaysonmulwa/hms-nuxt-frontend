@@ -35,7 +35,7 @@
         <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 tracking"
         >
-          Nurses
+          Departments.
         </h1>
       </div>
       <div class="flex flex-wrap justify-center">
@@ -45,20 +45,20 @@
               <div class="flex mb-4">
                 <a
                   class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
-                  >Nurses List</a
+                  >Departments List</a
                 >
               </div>
 
-              <span v-if="nurses.length">
+              <span v-if="appointments.length">
                 <div
                   class="flex border-b border-gray-200 py-2"
-                  v-for="item in nurses"
+                  v-for="item in departments"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
-                    >{{ item.staffCategory}}
+                    >{{ item.appointmentDate }}
                   </span>
-                  <span class="ml-auto text-gray-900">{{ item.employmentStatus }}</span>
+                  <span class="ml-auto text-gray-900">{{ item.appointmentDescription }}</span>
                 </div>
               </span>
               <span v-else>
@@ -75,83 +75,13 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Patients',
+  name: 'Departments',
   data() {
     return {
-      username: '',
-      email: '',
-      first_name: '',
-      last_name: '',
-      default_currency: '',
-      editable: false,
-      selected_currency: '',
-      profile: {},
-      nurses: [],
+      departments: [],
     }
   },
-  methods: {
-    updateInfo() {
-      axios
-        .get('/api/user')
-        .then((response) => {
-          this.user = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    save() {
-
-      if (this.default_currency == '') {
-        this.$toast.show("Please select a currency")
-        return
-      }
-
-      const params = {
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': '*'
-        },
-      }
-
-      const payload = {
-        default_currency: this.selected_currency,
-      }
-
-      const BASE_URL = 'http://localhost:8000'
-      const userId = localStorage.getItem('userId')
-
-      axios
-        .create(params)
-        .put(`${BASE_URL}/api/v1/profile/${userId}`, payload)
-        .then((response) => {
-          console.log(response)
-          this.default_currency = this.selected_currency
-          this.editable = false
-        })
-        .catch((error) => {
-          console.log(error)
-          this.editable = false
-        })
-
-
-      const [transactions] = Promise.all([
-        axios.create(params).get(`${BASE_URL}/history`),
-      ])
-      this.transactions = transactions?.data;
-      console.log(this.transactions)
-
-    },
-    selected(e) {
-      console.log(e.target.value)
-      this.selected_currency = e.target.value
-    },
-  },
-
-  async mounted() {
+  async mounted () {
     try {
       const params = {
         headers: {
@@ -164,18 +94,18 @@ export default {
       }
 
       const BASE_URL = 'http://localhost:8000'
+      const userId = localStorage.getItem('user_id')
+      const [departments] = await Promise.all([
+        axios.create(params).get(`${BASE_URL}/departments`),
+      ])
 
-      const [nurses] = await Promise.all([
-        axios.create(params).get(`${BASE_URL}/nurse`),
-      ]);
-      
-      this.nurses = nurses?.data;
+      this.departments = departments?.data;
+      console.log(this.departments);
       
     } catch (error) {
       console.log(error)
       this.$toast.show('Error fetching data')
     }
   },
-
 }
 </script>

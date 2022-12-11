@@ -137,45 +137,18 @@
 
               <span v-if="doctors.length">
                 <div
-                  class="flex border-t border-gray-200 py-2"
+                  class="flex border-b border-gray-200 py-2"
                   v-for="item in doctors"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
-                    >{{ item.narrative }}
+                    >{{ item.staffCategory}}
                   </span>
-                  <span class="ml-auto text-gray-900">{{ item.date }}</span>
+                  <span class="ml-auto text-gray-900">{{ item.employmentStatus }}</span>
                 </div>
               </span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-wrap justify-center">
-        <div class="container px-5 py-24 mx-auto">
-          <div class="lg:w-4/5 mx-auto flex flex-wrap">
-            <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-              <div class="flex mb-4">
-                <a
-                  class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
-                  >Recent Patient History</a
-                >
-              </div>
-              <p class="leading-relaxed mb-4">
-                This is the most recent patient history.
-              </p>
-
-              <span v-if="transactions.length">
-                <div
-                  class="flex border-t border-gray-200 py-2"
-                  v-for="item in transactions"
-                  :key="item.id"
-                >
-                  <span class="text-gray-500"
-                    >{{ item.narrative }}
-                  </span>
-                  <span class="ml-auto text-gray-900">{{ item.date }}</span>
-                </div>
+              <span v-else>
+                No data at the moment.
               </span>
             </div>
           </div>
@@ -199,7 +172,7 @@ export default {
       editable: false,
       selected_currency: '',
       profile: {},
-      doctors: {},
+      doctors: [],
     }
   },
   methods: {
@@ -279,7 +252,7 @@ export default {
       const BASE_URL = 'http://localhost:8000'
 
       const [doctors] = await Promise.all([
-        axios.create(params).get(`${BASE_URL}/doctors`),
+        axios.create(params).get(`${BASE_URL}/doctor`),
       ])
       this.doctors = doctors?.data;
       

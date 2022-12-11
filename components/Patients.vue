@@ -137,14 +137,15 @@
 
               <span v-if="patients.length">
                 <div
-                  class="flex border-t border-gray-200 py-2"
+                  class="flex border-b border-gray-200 py-2"
                   v-for="item in patients"
                   :key="item.id"
                 >
                   <span class="text-gray-500"
-                    >{{ item.narrative }}
+                    >{{ item.title}} {{ item.firstName }} {{ item.lastName }} {{ item.middleName }}
                   </span>
-                  <span class="ml-auto text-gray-900">{{ item.date }}</span>
+                  <span class="ml-auto text-gray-900">{{ item.gender }}</span>
+                  <span class="ml-auto text-gray-900">{{ item.age }}</span>
                 </div>
               </span>
             </div>
@@ -167,7 +168,7 @@
 
               <span v-if="transactions.length">
                 <div
-                  class="flex border-t border-gray-200 py-2"
+                  class="flex border-b border-gray-200 py-2"
                   v-for="item in transactions"
                   :key="item.id"
                 >

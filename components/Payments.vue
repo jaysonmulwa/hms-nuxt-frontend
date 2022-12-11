@@ -96,7 +96,7 @@
 
               <span v-if="payments.length">
                 <div
-                  class="flex border-t border-gray-200 py-2"
+                  class="flex border-b border-gray-200 py-2"
                   v-for="item in payments"
                   :key="item.id"
                 >
@@ -105,6 +105,9 @@
                   </span>
                   <span class="ml-auto text-gray-900">{{ item.amount }}</span>
                 </div>
+              </span>
+              <span v-else>
+                No data at the moment.
               </span>
             </div>
           </div>
@@ -122,7 +125,7 @@ export default {
     return {
       username: '',
       amount: '',
-      payments: {},
+      payments: [],
     }
   },
   methods: {
