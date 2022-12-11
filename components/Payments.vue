@@ -84,14 +84,6 @@
       <div class="modal-wrapper">
         <div class="modal-container">
 
-          <div class="modal-header">
-            <slot name="header">
-              <p class="leading-relaxed mb-5 text-gray-600">
-                Add a payment
-              </p>
-            </slot>
-          </div>
-
           <div class="modal-body">
             <slot name="body">
                 <div class="container flex justify-center">
@@ -100,26 +92,62 @@
                 >
                   
                   <div class="relative mb-4">
-                    <label for="username" class="leading-7 text-sm text-gray-600"
-                      >Username</label
+                    <label for="payment_metho" class="leading-7 text-sm text-gray-600"
+                      >Payment method</label
                     >
                     <input
-                      v-model="username"
+                      v-model="payment_method"
                       type="text"
-                      id="username"
-                      name="username"
+                      id="payment_method"
+                      name="payment_metho"
                       class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
                   <div class="relative mb-4">
-                    <label for="amount" class="leading-7 text-sm text-gray-600"
-                      >Amount</label
+                    <label for="payment_amt" class="leading-7 text-sm text-gray-600"
+                      >Payment amount</label
                     >
                     <input
-                      v-model="amount"
+                      v-model="payment_amt"
                       type="number"
-                      id="amount"
-                      name="amount"
+                      id="payment_amt"
+                      name="payment_amt"
+                      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div>
+                  <div class="relative mb-4">
+                    <label for="currency_code" class="leading-7 text-sm text-gray-600"
+                      >Currency code</label
+                    >
+                    <input
+                      v-model="currency_code"
+                      type="text"
+                      id="currency_code"
+                      name="currency_code"
+                      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div>
+                  <div class="relative mb-4">
+                    <label for="appointment_id" class="leading-7 text-sm text-gray-600"
+                      >Appointment ID</label
+                    >
+                    <input
+                      v-model="appointment_id"
+                      type="text"
+                      id="appointment_id"
+                      name="appointment_id"
+                      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div>
+                  <div class="relative mb-4">
+                    <label for="patient_id" class="leading-7 text-sm text-gray-600"
+                      >Patient ID</label
+                    >
+                    <input
+                      v-model="patient_id"
+                      type="text"
+                      id="patient_id"
+                      name="patient_id"
                       class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                     />
                   </div>
@@ -158,8 +186,11 @@ export default {
   name: 'Payments',
   data() {
     return {
-      username: '',
-      amount: '',
+      payment_method: '',
+      payment_amt: '',
+      appointment_id: 0,
+      currency_code: "",
+      patient_id: "",
       payments: [],
       showModal: false,
     }
@@ -180,9 +211,11 @@ export default {
       };
 
       const payload = {
-        user_id: localStorage.getItem('user_id'),
-        entry: this.type,
-        amount: this.amount,
+        payment_method: this.payment_method,
+        payment_amt: this.payment_amt,
+        appointment_id: this.appointment_id,
+        currency_code: this.currency_code,
+        patient_id: this.patient_id
       }
 
       const BASE_URL = 'http://localhost:8000';
