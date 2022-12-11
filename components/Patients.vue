@@ -106,33 +106,75 @@
       </div>
     </div>
     <!--Create modal -->
-    <div class="modal-mask" v-show="showModal">
-      <div class="modal-wrapper">
-        <div class="modal-container">
+      <div class="modal-mask" v-show="showModal">
+        <div class="modal-wrapper">
+          <div class="modal-container">
 
-          <div class="modal-header">
-            <slot name="header">
-              default header
-            </slot>
-          </div>
+            <div class="modal-header">
+              <slot name="header">
+                <p class="leading-relaxed mb-5 text-gray-600">
+                  Add a payment
+                </p>
+              </slot>
+            </div>
 
-          <div class="modal-body">
-            <slot name="body">
-              default body
-            </slot>
-          </div>
+            <div class="modal-body">
+              <slot name="body">
+                  <div class="container flex justify-center">
+                  <div
+                    class="bg-gray-100 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0 relative z-10 shadow-md"
+                  >
+                    
+                    <div class="relative mb-4">
+                      <label for="username" class="leading-7 text-sm text-gray-600"
+                        >Username</label
+                      >
+                      <input
+                        v-model="username"
+                        type="text"
+                        id="username"
+                        name="username"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+                    <div class="relative mb-4">
+                      <label for="amount" class="leading-7 text-sm text-gray-600"
+                        >Amount</label
+                      >
+                      <input
+                        v-model="amount"
+                        type="number"
+                        id="amount"
+                        name="amount"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+                    <button
+                      class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                      @click="create"
+                    >
+                      Save
+                    </button>
+                    <p class="text-xs text-gray-500 mt-3">
+                      Currency conversions will be handles automatically.
+                    </p>
+                  </div>
+                </div>
+              </slot>
+            </div>
 
-          <div class="modal-footer">
-            <slot name="footer">
-              default footer
-              <button class="modal-default-button" @click="closeModal()">
-                Close
-              </button>
-            </slot>
+            <div class="modal-footer">
+              <slot name="footer">
+                .
+                <button class="modal-default-button" @click="closeModal()">
+                  Close
+                </button>
+              </slot>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+      <!--End of create modal-->
   </section>
 </template>
 
