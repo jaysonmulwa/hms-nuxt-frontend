@@ -176,23 +176,7 @@ export default {
     }
   },
   methods: {
-    updateInfo() {
-      axios
-        .get('/api/user')
-        .then((response) => {
-          this.user = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
-    save() {
-
-      if (this.default_currency == '') {
-        this.$toast.show("Please select a currency")
-        return
-      }
-
+    create() {
       const params = {
         headers: {
           Accept: 'application/json',
@@ -201,40 +185,55 @@ export default {
           'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
           'Access-Control-Allow-Headers': '*'
         },
-      }
+      };
 
       const payload = {
-        default_currency: this.selected_currency,
+        user_id: localStorage.getItem('user_id'),
+        entry: this.type,
+        amount: this.amount,
       }
 
-      const BASE_URL = 'http://localhost:8000'
-      const userId = localStorage.getItem('userId')
+      const BASE_URL = 'http://localhost:8000';
 
       axios
         .create(params)
-        .put(`${BASE_URL}/api/v1/profile/${userId}`, payload)
+        .post(`${BASE_URL}/doctor`, payload)
         .then((response) => {
           console.log(response)
-          this.default_currency = this.selected_currency
-          this.editable = false
+          if (response.data.success) {
+            this.$toast.show('successfully created.');
+          }
         })
         .catch((error) => {
           console.log(error)
-          this.editable = false
+          this.$toast.show('Something went wrong!')
+        });
+    },
+    delete(id) {
+      const params = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': '*'
+        },
+      };
+      const BASE_URL = 'http://localhost:8000';
+      axios
+        .create(params)
+        .delete(`${BASE_URL}/doctor/${id}`,)
+        .then((response) => {
+          console.log(response)
+          if (response.data.success) {
+            this.$toast.show('Successfully deleted.')
+          }
         })
-
-
-      const [transactions] = Promise.all([
-        axios.create(params).get(`${BASE_URL}/history`),
-      ])
-      this.transactions = transactions?.data;
-      console.log(this.transactions)
-
-    },
-    selected(e) {
-      console.log(e.target.value)
-      this.selected_currency = e.target.value
-    },
+        .catch((error) => {
+          console.log(error)
+          this.$toast.show('Something went wrong!')
+        })
+    }
   },
 
   async mounted() {

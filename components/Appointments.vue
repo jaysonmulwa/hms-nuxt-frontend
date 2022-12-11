@@ -89,6 +89,66 @@ export default {
       //
     }
   },
+  methods: {
+    create() {
+      const params = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': '*'
+        },
+      };
+
+      const payload = {
+        user_id: localStorage.getItem('user_id'),
+        entry: this.type,
+        amount: this.amount,
+      }
+
+      const BASE_URL = 'http://localhost:8000';
+
+      axios
+        .create(params)
+        .post(`${BASE_URL}/appointment`, payload)
+        .then((response) => {
+          console.log(response)
+          if (response.data.success) {
+            this.$toast.show('successfully created.');
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$toast.show('Something went wrong!')
+        });
+    },
+    delete(id) {
+      const params = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': '*'
+        },
+      };
+      const BASE_URL = 'http://localhost:8000';
+      axios
+        .create(params)
+        .delete(`${BASE_URL}/appointment/${id}`,)
+        .then((response) => {
+          console.log(response)
+          if (response.data.success) {
+            this.$toast.show('Successfully deleted.')
+          }
+        })
+        .catch((error) => {
+          console.log(error)
+          this.$toast.show('Something went wrong!')
+        })
+    }
+  },
   async mounted () {
     try {
       const params = {
