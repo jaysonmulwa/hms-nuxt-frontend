@@ -181,27 +181,119 @@
                     class="bg-gray-100 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0 relative z-10 shadow-md"
                   >
                     
-                    <div class="relative mb-4">
-                      <label for="username" class="leading-7 text-sm text-gray-600"
-                        >Username</label
+                      <div class="relative mb-4">
+                      <label for="title" class="leading-7 text-sm text-gray-600"
+                        >Title</label
                       >
                       <input
-                        v-model="username"
+                        v-model="title"
                         type="text"
-                        id="username"
-                        name="username"
+                        id="title"
+                        name="title"
                         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       />
                     </div>
                     <div class="relative mb-4">
-                      <label for="amount" class="leading-7 text-sm text-gray-600"
-                        >Amount</label
+                      <label for="firstName" class="leading-7 text-sm text-gray-600"
+                        >First name</label
                       >
                       <input
-                        v-model="amount"
-                        type="number"
-                        id="amount"
-                        name="amount"
+                        v-model="firstName"
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+
+                    <div class="relative mb-4">
+                      <label for="middleName" class="leading-7 text-sm text-gray-600"
+                        >Middle name</label
+                      >
+                      <input
+                        v-model="middleName"
+                        type="text"
+                        id="middleName"
+                        name="middleName"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+
+                    <div class="relative mb-4">
+                      <label for="lastName" class="leading-7 text-sm text-gray-600"
+                        >Last name</label
+                      >
+                      <input
+                        v-model="lastName"
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+
+                    <div class="relative mb-4">
+                      <label for="birthDate" class="leading-7 text-sm text-gray-600"
+                        >Date of Birth</label
+                      >
+                      <input
+                        v-model="birthDate"
+                        type="date"
+                        id="birthDate"
+                        name="birthDate"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+
+                    <div class="relative mb-4">
+                      <label for="gender" class="leading-7 text-sm text-gray-600"
+                        >Gender</label
+                      >
+                      <input
+                        v-model="gender"
+                        type="text"
+                        id="gender"
+                        name="gender"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+
+                    <div class="relative mb-4">
+                      <label for="homeAddress" class="leading-7 text-sm text-gray-600"
+                        >Home Address</label
+                      >
+                      <input
+                        v-model="homeAddress"
+                        type="text"
+                        id="homeAddress"
+                        name="homeAddress"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+
+                    <div class="relative mb-4">
+                      <label for="phone" class="leading-7 text-sm text-gray-600"
+                        >Phone</label
+                      >
+                      <input
+                        v-model="phone"
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                      />
+                    </div>
+
+
+                    <div class="relative mb-4">
+                      <label for="kinContacts" class="leading-7 text-sm text-gray-600"
+                        >Kin Contacts</label
+                      >
+                      <input
+                        v-model="kinContacts"
+                        type="text"
+                        id="kinContacts"
+                        name="kinContacts"
                         class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
                       />
                     </div>
@@ -238,13 +330,16 @@ export default {
   name: 'Doctors',
   data() {
     return {
-      username: '',
-      email: '',
-      first_name: '',
-      last_name: '',
-      default_currency: '',
-      editable: false,
-      selected_currency: '',
+      title: "",
+      firstName: "",
+      middleName: "",
+      lastName: "",
+      birthDate: "",
+      gender: "",
+      homeAddress: "",
+      phone: "",
+      kinContacts: "",
+
       profile: {},
       doctors: [],
       showModal: false,
@@ -266,9 +361,15 @@ export default {
       };
 
       const payload = {
-        user_id: localStorage.getItem('user_id'),
-        entry: this.type,
-        amount: this.amount,
+        title: this.title,
+        firstName: this.firstName,
+        middleName: this.middleName,
+        lastName: this.lastName,
+        birthDate: this.birthDate,
+        gender: this.gender,
+        homeAddress: this.homeAddress,
+        phone: this.phone,
+        kinContacts:this.kinContacts,
       }
 
       const BASE_URL = 'http://localhost:8000';
@@ -280,6 +381,7 @@ export default {
           console.log(response)
           if (response.data.success) {
             this.$toast.show('successfully created.');
+            this.showModal = false;
           }
         })
         .catch((error) => {
