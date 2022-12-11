@@ -95,7 +95,7 @@
               </svg>
             </div>
             <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Doctors</h2>
-            <p class="leading-relaxed text-base w-full">Doctors, Nurses and everyone else under one roof.</p>
+            <p class="leading-relaxed text-base w-full">For quick and easy management of doctors.</p>
           </div>
         </NuxtLink>
       </div>
@@ -109,7 +109,7 @@
               </svg>
             </div>
             <h2 class="text-lg text-gray-900 font-medium title-font mb-2">Nurses</h2>
-            <p class="leading-relaxed text-base w-full">Doctors, Nurses and everyone else under one roof.</p>
+            <p class="leading-relaxed text-base w-full">For quick and easy management of nurses.</p>
           </div>
         </NuxtLink>
       </div>

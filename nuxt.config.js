@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxt-fe-service',
+    title: 'Hospital management system',
     htmlAttrs: {
       lang: 'en',
     },
@@ -18,6 +18,7 @@ export default {
   css: [
     // CSS file in the project
     '@/assets/css/main.css',
+    '@/assets/css/modal.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
