@@ -35,7 +35,7 @@
         <h1
           class="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900 tracking"
         >
-          Wallet.
+          Appointments.
         </h1>
       </div>
       <div class="flex flex-wrap justify-center -m-4">
@@ -58,20 +58,18 @@
               <div class="flex mb-4">
                 <a
                   class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
-                  >Recent Transaction history</a
+                  >Recent Appointments</a
                 >
               </div>
               <p class="leading-relaxed mb-4">
-                These are your most recent Credit, Debit and Cash Transfer
-                transactions. For the full transaction statement, kindly get in
-                touch with us.
+                These are the most recent appointments.
               </p>
 
-              <span v-if="transactions.length">
+              <span v-if="appointments.length">
                 <div
                   class="flex border-t border-gray-200 py-2"
-                  v-for="item in transactions"
-                  :key="item.transaction_id"
+                  v-for="item in appointments"
+                  :key="item.id"
                 >
                   <span class="text-gray-500"
                     >{{ item.transaction_type }}
@@ -90,14 +88,14 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Wallet',
+  name: 'Appointments',
   data() {
     return {
       balance: {
         amount: 0,
         currency: 'USD',
       },
-      transactions: {},
+      appointments: {},
       //
     }
   },
@@ -115,16 +113,13 @@ export default {
 
       const BASE_URL = 'http://localhost:8000'
       const userId = localStorage.getItem('user_id')
-      const [balance, transactions] = await Promise.all([
-        axios.create(params).get(`${BASE_URL}/api/v1/balance/${userId}`),
-        axios.create(params).get(`${BASE_URL}/api/v1/transactions/${userId}`),
+      const [appointments] = await Promise.all([
+        axios.create(params).get(`${BASE_URL}/appointment`),
       ])
 
-        this.balance =  balance?.data;
-        this.transactions = transactions?.data;
+        this.appointments = appointments?.data;
 
-        console.log(this.balance)
-        console.log(this.transactions)
+        console.log(this.appointments)
       
     } catch (error) {
       console.log(error)

@@ -188,7 +188,7 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Patients',
+  name: 'Doctors',
   data() {
     return {
       username: '',

@@ -80,6 +80,36 @@
           </p>
         </div>
       </div>
+       <div class="flex flex-wrap justify-center">
+        <div class="container px-5 py-24 mx-auto">
+          <div class="lg:w-4/5 mx-auto flex flex-wrap">
+            <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+              <div class="flex mb-4">
+                <a
+                  class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
+                  >Recent Payments</a
+                >
+              </div>
+              <p class="leading-relaxed mb-4">
+                These are the most recent Payments.
+              </p>
+
+              <span v-if="payments.length">
+                <div
+                  class="flex border-t border-gray-200 py-2"
+                  v-for="item in payments"
+                  :key="item.id"
+                >
+                  <span class="text-gray-500"
+                    >{{ item.transaction_type }}
+                  </span>
+                  <span class="ml-auto text-gray-900">{{ item.amount }}</span>
+                </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 </template>
@@ -87,11 +117,12 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'Transfer',
+  name: 'Payments',
   data() {
     return {
       username: '',
       amount: '',
+      payments: {},
     }
   },
   methods: {
@@ -128,6 +159,31 @@ export default {
           this.$toast.show('Something went wrong!')
         })
     },
+  },
+  async mounted () {
+    try {
+      const params = {
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': '*'
+        },
+      }
+
+      const BASE_URL = 'http://localhost:8000'
+      const userId = localStorage.getItem('user_id')
+      const [payments] = await Promise.all([
+        axios.create(params).get(`${BASE_URL}/payments`),
+      ])
+      this.payments = payments?.data;
+      console.log(this.payments)
+      
+    } catch (error) {
+      console.log(error)
+      this.$toast.show('Error fetching data')
+    }
   },
 }
 </script>

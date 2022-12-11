@@ -1,9 +1,9 @@
 <template>
-  <Wallet />
+  <Appointments />
 </template>
 
 <script>
 export default {
-  name: 'WalletPage',
+  name: 'AppointmentsPage',
 }
 </script>
