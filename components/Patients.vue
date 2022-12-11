@@ -38,96 +38,17 @@
           Patients
         </h1>
       </div>
-      <!--<div class="flex flex-wrap justify-center -m-4">
-        <div class="w-full lg:w-3/5 p-4">
-          <div
-            class="border border-gray-200 p-6 rounded-lg flex flex-wrap justify-center -m-4"
-          >
-            <span
-              class="w-full xl:w-1/2 lg:w-1/2 md:w-1/2 sm:w-full xs:w-full p-4"
-            >
-              <div class="flex items-center justify-center h-full">
-                <div
-                  class="w-48 h-48 rounded-full inline-flex items-center justify-center bg-gray-200 text-gray-400"
-                >
-                  <svg
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    class="w-24 h-24"
-                    viewBox="0 0 24 24"
-                  >
-                    <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-              </div>
-            </span>
-            <span
-              class="w-full xl:w-1/2 lg:w-1/2 md:w-1/2 sm:w-full xs:w-full p-4"
-            >
-              <div class="flex border-b border-gray-200 py-2">
-                <span class="text-gray-500">Username</span>
-                <span class="ml-auto text-gray-900">jj19990001</span>
-              </div>
-
-              <div class="flex border-b border-gray-200 py-2">
-                <span class="text-gray-500">Default Currency</span>
-                <span
-                  class="ml-auto text-gray-900 flex flex-row"
-                  v-if="!editable"
-                >
-                  <p class="px-2">USD</p>
-                  <small @click="editable = true"
-                    ><a><u>Edit</u></a></small
-                  >
-                </span>
-                <span
-                  class="ml-auto text-gray-900 flex flex-row"
-                  v-else-if="editable"
-                >
-                  <select
-                    @change="selected($event)"
-                    v-model="default_currency"
-                    id="default_currency"
-                    class="block w-full px-4 py-2 bg-white border border-gray-400 rounded-lg shadow-sm focus:outline-none focus:shadow-outline-blue focus:border-blue-300 transition duration-150 ease-in-out sm:text-sm sm:leading-5"
-                  >
-                    <option value="">-- Select a Currency --</option>
-                    <option value="USD">USD</option>
-                    <option value="KES">KES</option>
-                  </select>
-                  <small @click="save" class="pl-2"
-                    ><a><u>Save</u></a></small
-                  >
-                </span>
-              </div>
-
-              <div class="flex border-b border-gray-200 py-2">
-                <span class="text-gray-500">Email address</span>
-                <span class="ml-auto text-gray-900"
-                  >jayson.mulwa@gmail.com</span
-                >
-              </div>
-
-              <div class="flex border-b border-gray-200 py-2">
-                <span class="text-gray-500">First name</span>
-                <span class="ml-auto text-gray-900">Jayson</span>
-              </div>
-
-              <div class="flex border-b border-gray-200 py-2">
-                <span class="text-gray-500">Last name</span>
-                <span class="ml-auto text-gray-900">Mulwa</span>
-              </div>
-            </span>
-          </div>
-        </div>
-      </div>-->
       <div class="flex flex-wrap justify-center">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
+              <div class="flex justify-end mb-4">
+                <button @click="showModal = true" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
+                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+                      Add +
+                  </span>
+                </button>
+              </div>
               <div class="flex mb-4">
                 <a
                   class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
@@ -156,13 +77,7 @@
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
             <div class="lg:w-full w-full lg:pr-10 lg:py-6 mb-6 lg:mb-0">
-              <div class="flex justify-end mb-4">
-                <button @click="showModal = true" class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-purple-500 to-pink-500 group-hover:from-purple-500 group-hover:to-pink-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800">
-                  <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
-                      Add +
-                  </span>
-                </button>
-              </div>
+              
               <div class="flex mb-4">
                 <a
                   class="flex-grow text-indigo-500 border-b-2 border-indigo-500 py-2 text-lg px-1"
@@ -186,6 +101,34 @@
                 </div>
               </span>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Create modal -->
+    <div class="modal-mask" v-show="showModal">
+      <div class="modal-wrapper">
+        <div class="modal-container">
+
+          <div class="modal-header">
+            <slot name="header">
+              default header
+            </slot>
+          </div>
+
+          <div class="modal-body">
+            <slot name="body">
+              default body
+            </slot>
+          </div>
+
+          <div class="modal-footer">
+            <slot name="footer">
+              default footer
+              <button class="modal-default-button" @click="closeModal()">
+                Close
+              </button>
+            </slot>
           </div>
         </div>
       </div>
