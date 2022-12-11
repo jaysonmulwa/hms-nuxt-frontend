@@ -37,49 +37,7 @@
           Payments.
         </h1>
       </div>
-      <div class="container px-5 py-24 mx-auto flex justify-center">
-        <div
-          class="lg:w-1/3 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0 relative z-10 shadow-md"
-        >
-          <!--h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>-->
-          <p class="leading-relaxed mb-5 text-gray-600">
-            Send cash to another user on our platform.
-          </p>
-          <div class="relative mb-4">
-            <label for="username" class="leading-7 text-sm text-gray-600"
-              >Username</label
-            >
-            <input
-              v-model="username"
-              type="text"
-              id="username"
-              name="username"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            />
-          </div>
-          <div class="relative mb-4">
-            <label for="amount" class="leading-7 text-sm text-gray-600"
-              >Amount</label
-            >
-            <input
-              v-model="amount"
-              type="number"
-              id="amount"
-              name="amount"
-              class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            />
-          </div>
-          <button
-            class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
-            @click="transfer"
-          >
-            Transfer
-          </button>
-          <p class="text-xs text-gray-500 mt-3">
-            Currency conversions will be handles automatically.
-          </p>
-        </div>
-      </div>
+ 
        <div class="flex flex-wrap justify-center">
         <div class="container px-5 py-24 mx-auto">
           <div class="lg:w-4/5 mx-auto flex flex-wrap">
@@ -134,7 +92,49 @@
 
           <div class="modal-body">
             <slot name="body">
-              default body
+                <div class="container px-5 py-24 mx-auto flex justify-center">
+                <div
+                  class="lg:w-1/3 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col w-full mt-10 md:mt-0 relative z-10 shadow-md"
+                >
+                  <!--h2 class="text-gray-900 text-lg mb-1 font-medium title-font">Feedback</h2>-->
+                  <p class="leading-relaxed mb-5 text-gray-600">
+                    Send cash to another user on our platform.
+                  </p>
+                  <div class="relative mb-4">
+                    <label for="username" class="leading-7 text-sm text-gray-600"
+                      >Username</label
+                    >
+                    <input
+                      v-model="username"
+                      type="text"
+                      id="username"
+                      name="username"
+                      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div>
+                  <div class="relative mb-4">
+                    <label for="amount" class="leading-7 text-sm text-gray-600"
+                      >Amount</label
+                    >
+                    <input
+                      v-model="amount"
+                      type="number"
+                      id="amount"
+                      name="amount"
+                      class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                    />
+                  </div>
+                  <button
+                    class="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                    
+                  ><!--@click="transfer"-->
+                    Transfer
+                  </button>
+                  <p class="text-xs text-gray-500 mt-3">
+                    Currency conversions will be handles automatically.
+                  </p>
+                </div>
+              </div>
             </slot>
           </div>
 
