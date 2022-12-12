@@ -1,6 +1,6 @@
 # hospital management system nuxtjs app
 
-Check https://github.com.jaysonmulwa/hms-spring-boot for the api to this app.
+Check https://github.com/jaysonmulwa/hms-spring-boot for the api to this app.
 
 ## Build Setup
 
